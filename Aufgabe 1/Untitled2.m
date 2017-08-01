@@ -1,0 +1,2 @@
+clear;
+swbild=imread(
