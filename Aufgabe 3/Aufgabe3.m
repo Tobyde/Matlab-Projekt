@@ -1,16 +1,54 @@
-%3D Darstellung einer konischen Spirale
-clear;
-z=0:0.01:50;
-r=(3/5)*z;
-x=r.*sin(((2*pi)/5)*z);
-y=r.*cos(((2*pi)/5)*z);
+%Aufgabe 3
+clear all
+hold off
 
-%Dreidimensionale Ansicht
-figure(1);
-plot3(x,y,z);
-xlabel('x'), ylabel('y'), zlabel('Höhe'), grid;
+%Definition der Winkel
+phi = 0:pi/20:2*pi;         %Elevationswinkel
+theta = 0:pi/20:pi;         %Azimutwinkel
 
-%Draufsicht auf xy-Ebene
-figure(2);
-plot(x,y);
-xlabel('x'), ylabel('y'), grid;
+[U1,V1] = meshgrid(phi,theta);
+
+%Halbkugel 1
+X1 =3 + sin(V1).*cos(U1./2);
+Y1 =3 +  sin(V1).*sin(U1./2);
+Z1 =3 +  cos(V1);
+
+%Halbkugel 2
+X2 = 1 + 2.*(sin(V1).*cos(U1./2));
+Y2 = 5 + 2.*(sin(V1).*sin(U1./2));
+Z2 = 0 + 2.*cos(V1);
+
+%Halbkugel 3
+X3 = 2 + 0.5.*(sin(V1).*cos(U1./2));
+Y3 = 2 + 0.5.*(sin(V1).*sin(U1./2));
+Z3 = 2 + 0.5.*cos(V1);
+
+%Halbkugel 4
+X4 = 0 + 1.5.*(sin(V1).*cos(U1./2));
+Y4 = -2 + 1.5.*(sin(V1).*sin(U1./2));
+Z4 = -2 + 1.5.*cos(V1);
+
+%Halbkugel 5
+X5 = -4 + 4.*(sin(V1).*cos(U1./2));
+Y5 = 0 + 4.*(sin(V1).*sin(U1./2));
+Z5 = -4 + 4.*cos(V1);
+
+%Plot der Halbkugeln
+figure(2)
+h = surf(X1,Y1,Z1,'FaceColor','red'),hold on;
+i = surf(X2,Y2,Z2,'FaceColor','blue'),hold on;
+j = surf(X3,Y3,Z3,'FaceColor','black'),hold on;
+k = surf(X4,Y4,Z4,'FaceColor','yellow'),hold on; 
+l = surf(X5,Y5,Z5,'FaceColor','green'),hold on; 
+
+%Rotation der Halbkugeln
+rotate(h,[1 1 0],165)
+rotate(i,[0 1 1],81)
+rotate(j,[1 0 0],63)
+rotate(k,[1 0 1],255)
+rotate(l,[0 1 1],321)
+
+%Anpassen der Achsen
+axis equal
+
+
