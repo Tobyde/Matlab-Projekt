@@ -1,33 +1,32 @@
-%
-clear
+%Aufgabe 1
+clear;
 
 %Bild einlesen
-picture = imread('Aufgabe1.png');
+picture = imread('Aufgabe1_SoSe_2018.png');
 
 %Bild von 16-Bit in zwei 8-Bit Bilder aufteilen
 picture1 = im2uint8(picture);
 picture2 = im2uint8(swapbytes(picture));
 
+%Bild um 90° drehen
+picture2 = imrotate(picture2,90);
+
 %Jede gerade Zeile umdrehen von picture2
 picture2(2:2:end,:,:) = fliplr(picture2(2:2:end,:,:));
 
-%Blau und Grün tauschen in picture2
-newpicture2(:,:,1) = picture2(:,:,1);
-newpicture2(:,:,2) = picture2(:,:,3);
-newpicture2(:,:,3) = picture2(:,:,2);
+%Farben 550invertieren
+picture2 = imcomplement(picture2);
 
-%imshow(newpicture2)
+%Anzeigen von picture1
+figure(1)
+imshow(picture2)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%Testphase%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-figure(2)
-imshow(picture1)
-
+%Umwandeln von Violett in Blau im HSV-Raum
 picture1hsv = rgb2hsv(picture1);
-picture1hsv(find(picture1hsv(:,:,1)>0.09 & picture1hsv(:,:,1)<0.6)) = 0;
+picture1hsv(find(picture1hsv(:,:,1)>0.7222 & picture1hsv(:,:,1)<0.7639)) = picture1hsv(find(picture1hsv(:,:,1)>0.7222 & picture1hsv(:,:,1)<0.7639)) - 0.1389;
 picture1=hsv2rgb(picture1hsv);
 
-figure(3)
+%Anzeigen von picture2
+figure(2)
 imshow(picture1)
