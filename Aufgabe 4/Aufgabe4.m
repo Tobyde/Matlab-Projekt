@@ -7,6 +7,9 @@ swBild=imread('Aufgabe4.png');
 genPol = [12 8 2 0];
 initWert = [1 0 0 0 1 0 0 0 0 0 1 0];
 
+% genPol = [12 10 4 0];
+% initWert = [1 0 0 1 1 0 1 1 0 0 1 0];
+
 %Anzahl der Binärstellen des Bilds auslesen
 binStellen = size(swBild,1)*size(swBild,2);
 
@@ -23,3 +26,5 @@ decodDaten = reshape(decodDaten,8 ,[]).';
 decodDaten = num2str(decodDaten);
 decodDaten = char(bin2dec(decodDaten)).';
 decodDaten = fliplr(decodDaten)
+
+
