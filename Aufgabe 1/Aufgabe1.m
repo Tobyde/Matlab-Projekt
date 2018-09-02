@@ -1,4 +1,5 @@
 %Aufgabe 1
+%Bildverarbeitung 
 clear;
 
 %Bild einlesen
@@ -14,7 +15,7 @@ picture2 = imrotate(picture2,90);
 %Jede gerade Zeile umdrehen von picture2
 picture2(2:2:end,:,:) = fliplr(picture2(2:2:end,:,:));
 
-%Farben 550invertieren
+%Farben invertieren
 picture2 = imcomplement(picture2);
 
 %Anzeigen von picture1
@@ -24,7 +25,7 @@ imshow(picture2)
 
 %Umwandeln von Violett in Blau im HSV-Raum
 picture1hsv = rgb2hsv(picture1);
-picture1hsv(find(picture1hsv(:,:,1)>0.7222 & picture1hsv(:,:,1)<0.7639)) = picture1hsv(find(picture1hsv(:,:,1)>0.7222 & picture1hsv(:,:,1)<0.7639)) - 0.1389;
+picture1hsv(picture1hsv(:,:,1)>0.7222 & picture1hsv(:,:,1)<0.7639) = picture1hsv(picture1hsv(:,:,1)>0.7222 & picture1hsv(:,:,1)<0.7639) - 0.1389;
 picture1=hsv2rgb(picture1hsv);
 
 %Anzeigen von picture2
